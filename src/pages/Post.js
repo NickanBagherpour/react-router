@@ -1,8 +1,12 @@
+import { useParams } from "react-router";
 
-const Post = ({match}) => {
+const Post = () => {
+
+  const {id} = useParams();
+
   return (
     <>
-      <div>id is {match.params.id}</div>
+      <div>id is {id}</div>
     </>
   );
 };
