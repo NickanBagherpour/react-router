@@ -27,7 +27,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />
           <Route path="/profile">
-            {login ? <Profile /> : <Redirect to="/" />}
+            <Profile login={login} />
           </Route>
           <Route path="/post/:id" component={Post} />
           <Route component={NotFound} />
