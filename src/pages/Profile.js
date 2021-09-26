@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router";
+import { Route, Switch, useHistory, useRouteMatch , Link } from "react-router-dom";
+
+import EditProfile from "../components/EditProfile";
+import ViewProfile from "../components/ViewProfile";
 
 const Profile = (props) => {
   const login = props.login;
@@ -9,11 +12,27 @@ const Profile = (props) => {
     if (!login) {
       history.push("/");
     }
-  }, [login,history]);
+  }, [login, history]);
+
+  const { path, url } = useRouteMatch();
 
   return (
     <>
       <h1>Profile</h1>
+
+      <ul className="nav">
+        <li>
+          <Link to={`${url}/viewprofile`}>View Profile</Link>
+        </li>
+        <li>
+          <Link to={`${url}/editprofile`}>Edit Profile</Link>
+        </li>
+      </ul>
+
+      <Switch>
+        <Route path={`${path}/viewprofile`} component={ViewProfile} />
+        <Route path={`${path}/editprofile`} component={EditProfile} />
+      </Switch>
     </>
   );
 };
